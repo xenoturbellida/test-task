@@ -44,6 +44,6 @@ class Sequence
 end
 
 
-seq = Sequence.new
-
-seq.print_sequence(3)
+# seq = Sequence.new
+#
+# seq.print_sequence(3)

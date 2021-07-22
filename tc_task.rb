@@ -18,7 +18,14 @@ class TestTask < Test::Unit::TestCase
   end
 
   def test_sequence_is_proper
-    assert_equal("1\n11\n21\n1211\n111221\n312211\n13112221\n1113213211", @sequence.print_sequence(8))
+    @sequence.generate_sequence(6)
+    assert_equal("1", @sequence.sequence[0])
+    assert_equal("11", @sequence.sequence[1])
+    assert_equal("21", @sequence.sequence[2])
+    assert_equal("1211", @sequence.sequence[3])
+    assert_equal("111221", @sequence.sequence[4])
+    assert_equal("312211", @sequence.sequence[5])
+    assert_equal("13112221", @sequence.sequence[6])
   end
 
 end
