@@ -1,8 +1,9 @@
 class Sequence
-  attr_accessor :init_number
+  attr_accessor :init_number, :sequence
 
   def initialize
     @init_number = "1"
+    @sequence = Array.new
   end
 
   def next_number(current_num)
@@ -21,16 +22,28 @@ class Sequence
     return result
   end
 
-  def print_sequence(up_to)
+  def generate_sequence(up_to_num)
     current = @init_number
-    up_to.times do |serial_number|
-      puts current
+    @sequence << current
+    # generated_seq = current
+    up_to_num.times do |how_many_was_generated|
+      # puts current
       current = next_number(current)
+      @sequence << current
+      # generated_seq = generated_seq + "\n" + current
+    end
+  end
+
+  def print_sequence(up_to_num)
+    # puts generate_sequence(up_to_num)
+    generate_sequence(up_to_num)
+    for num in @sequence
+      puts num
     end
   end
 end
 
 
-# seq = Sequence.new
-#
-# seq.print_sequence(8)
+seq = Sequence.new
+
+seq.print_sequence(3)
