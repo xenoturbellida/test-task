@@ -1,5 +1,5 @@
 class Sequence
-  attr_accessor :init_number, :sequence
+  attr_accessor :init_number, :sequence, :last_number
 
   def initialize
     @init_number = "1"
@@ -8,42 +8,65 @@ class Sequence
 
   def next_number(current_num)
     result = ""
-    ind = 0
+    i = 0
 
-    while ind < current_num.length()
+    while i < current_num.length
       count = 1
-      while ind + 1 < current_num.length() and current_num[ind] == current_num[ind + 1]
-        ind += 1
+
+      while i + 1 < current_num.length and current_num[i] == current_num[i + 1]
+        i += 1
         count += 1
       end
-      result += count.to_s + current_num[ind]
-      ind += 1
+
+      result += count.to_s + current_num[i]
+      i += 1
     end
+
     return result
+
   end
 
-  def generate_sequence(up_to_num)
+  def generate_sequence(up_to_num="6")
+
     current = @init_number
     @sequence << current
-    # generated_seq = current
+
     up_to_num.times do |how_many_was_generated|
-      # puts current
       current = next_number(current)
       @sequence << current
-      # generated_seq = generated_seq + "\n" + current
     end
+
+    @last_number = current
+
   end
 
-  def print_sequence(up_to_num)
-    # puts generate_sequence(up_to_num)
+  def print_sequence(up_to_num="6")
     generate_sequence(up_to_num)
     for num in @sequence
       puts num
     end
   end
+
+  def print_with_user_input
+    pad = 14
+    message = " Specify your serial number the sequence will be printed up to: "
+    message = message.center(message.length + pad, "=")
+    puts message
+
+    up_to_num_ = gets.chomp.to_i
+
+    seq_message =  " The sequence: "
+    seq_message = seq_message.center(message.length, "*")
+    puts seq_message
+
+    print_sequence(up_to_num_)
+
+    puts "*" * message.length
+  end
+
 end
 
 
-# seq = Sequence.new
-#
-# seq.print_sequence(3)
+seq = Sequence.new
+
+seq.print_with_user_input
